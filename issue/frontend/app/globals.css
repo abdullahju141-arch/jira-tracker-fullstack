@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { box-sizing: border-box; }
+body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f0f2f8; }
+
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 99px; }
+
+select { -webkit-appearance: none; appearance: none; }
+
+.input-focus:focus {
+  outline: none;
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79,70,229,0.10);
+}
+
+.drag-over { border: 2px dashed #4f46e5 !important; background: #eef2ff !important; }
+.dragging   { opacity: 0.4; transform: scale(0.97); }
+
+.anim-1 { animation-delay: 0.00s; }
+.anim-2 { animation-delay: 0.07s; }
+.anim-3 { animation-delay: 0.14s; }
+.anim-4 { animation-delay: 0.21s; }
+.anim-5 { animation-delay: 0.28s; }
+.anim-6 { animation-delay: 0.35s; }

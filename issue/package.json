@@ -1,0 +1,16 @@
+{
+  "name": "jira-tracker-fullstack",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install",
+    "dev":         "concurrently -n frontend,backend -c cyan,yellow \"npm run frontend\" \"npm run backend\"",
+    "frontend":    "cd frontend && npm run dev",
+    "backend":     "cd backend  && npm run dev",
+    "seed":        "cd backend  && npm run seed",
+    "build":       "cd frontend && npm run build"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
