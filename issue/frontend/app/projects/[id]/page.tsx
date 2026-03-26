@@ -181,19 +181,19 @@ export default function BoardPage() {
               className="w-full pl-9 pr-4 py-2 border border-slate-200 rounded-xl text-[13px] text-slate-800 bg-white font-medium input-focus" />
           </div>
           {/* Status */}
-          <SelectFilter value={filters.status ?? ''} onChange={v => dispatch(setFilterStatus((v || null) as Status|null))} placeholder="Status">
+          <SelectFilter value={filters.status ?? ''} onChange={(v: string) => dispatch(setFilterStatus((v ? v as Status : null)))} placeholder="Status">
             {COLUMNS.map(c => <option key={c.id} value={c.id}>{c.label}</option>)}
           </SelectFilter>
           {/* Priority */}
-          <SelectFilter value={filters.priority ?? ''} onChange={v => dispatch(setFilterPriority((v || null) as Priority|null))} placeholder="Priority">
+          <SelectFilter value={filters.priority ?? ''} onChange={(v: string) => dispatch(setFilterPriority((v ? v as Priority : null)))} placeholder="Priority">
             {Object.entries(PRIORITY_CONFIG).map(([k, v]) => <option key={k} value={k}>{v.label}</option>)}
           </SelectFilter>
           {/* Assignee */}
-          <SelectFilter value={filters.assignee ?? ''} onChange={v => dispatch(setFilterAssignee(v || null))} placeholder="Assignee">
+          <SelectFilter value={filters.assignee ?? ''} onChange={(v: string) => dispatch(setFilterAssignee(v || null))} placeholder="Assignee">
             {users.map(u => <option key={u.id} value={u.id}>{u.name}</option>)}
           </SelectFilter>
           {/* Labels */}
-          <SelectFilter value={filters.labels[0] ?? ''} onChange={v => dispatch(setFilterLabels(v ? [v] : []))} placeholder="Label">
+          <SelectFilter value={filters.labels[0] ?? ''} onChange={(v: string) => dispatch(setFilterLabels(v ? [v] : []))} placeholder="Label">
             {ALL_LABELS.map(l => <option key={l} value={l}>{l}</option>)}
           </SelectFilter>
           {/* Clear */}
@@ -250,7 +250,8 @@ export default function BoardPage() {
               toast.success('Issue updated');
               setSelectedIssue(null);
             } else {
-              toast.error((res as any).payload || 'Failed to update issue');
+              const payload = (res as any).payload;
+              toast.error((payload && typeof payload === 'object' ? payload.message : payload) || 'Failed to update issue');
             }
           }}
           onDelete={async () => {
@@ -259,7 +260,8 @@ export default function BoardPage() {
               toast.success('Issue deleted');
               setSelectedIssue(null);
             } else {
-              toast.error((res as any).payload || 'Failed to delete issue');
+              const payload = (res as any).payload;
+              toast.error((payload && typeof payload === 'object' ? payload.message : payload) || 'Failed to delete issue');
             }
           }}
         />
@@ -277,7 +279,8 @@ export default function BoardPage() {
                   toast.success('Issue created 🎉');
                   setShowNewIssue(false);
                 } else {
-                  toast.error((res as any).payload || 'Failed to create issue');
+                  const payload = (res as any).payload;
+                  toast.error((payload && typeof payload === 'object' ? payload.message : payload) || 'Failed to create issue');
                 }
           }}
         />

@@ -19,7 +19,8 @@ class SocketClient {
   private mockInterval: ReturnType<typeof setInterval> | null = null;
   private pingInterval: ReturnType<typeof setInterval> | null = null;
 
-  connect(projectId: string, token: string | null, useMock = false) {
+  // token is optional; when missing we fall back to mock events (current UI calls with only projectId).
+  connect(projectId: string, token: string | null = null, useMock = false) {
     this.disconnect();
     if (useMock || !token) { this.startMock(projectId); return; }
 

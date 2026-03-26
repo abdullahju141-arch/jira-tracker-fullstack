@@ -4,6 +4,7 @@ import { validationResult } from 'express-validator';
 import mongoose from 'mongoose';
 import { Issue } from '../models/Issue';
 import { Comment } from '../models/Comment';
+import { Project } from '../models/Project';
 import { sendSuccess, sendError, formatIssue } from '../utils/response';
 import { broadcast } from '../sockets/wsServer';
 import type { Status, Priority } from '../types';
